@@ -38,6 +38,7 @@ The purpose of the project is to recognize how AI can assist in modern developme
 - [ ] Add game AI
 - [ ] Add responsive design
 - [ ] Add other games
+- [ ] Fix game history tracking bug
 
 
 
@@ -56,3 +57,5 @@ This project was published to this GitHub repository using Git in the following 
   * The AI struggled to provide working code for games, instead generating skeletons or buggy designs
 * CSS Design inconsistencies
 * Brainstorming page ideas
+* Responsive design
+* Game history logic
