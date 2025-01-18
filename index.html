@@ -1,55 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Pong game - Play against the computer!">
-    <meta name="keywords" content="pong, game, arcade, single player">
-    <meta name="author" content="Christina Phan">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Pong game - Play against the computer!" />
+    <meta name="keywords" content="pong, game, arcade, single player" />
+    <meta name="author" content="Christina Phan" />
     <title>Pong Game</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
     <header>
-        <div class="logo">
-            <h1>Pong Game</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Play</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <!-- Hamburger Menu Icon -->
-            <div class="hamburger" id="hamburger">
-                &#9776;
-            </div>
-        </nav>
+      <div class="logo">
+        <h1>Pong Game</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Play</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" id="hamburger">&#9776;</div>
+      </nav>
     </header>
 
     <!-- Hamburger Menu -->
     <div class="sidebar" id="sidebar">
-        <button id="closeSidebar" class="close-btn">Close</button>
-        <h2>Last 3 Games</h2>
-        <ul id="gameScoresList">
-            <!-- Game scores will appear here -->
-        </ul>
+      <button id="closeSidebar" class="close-btn">Close</button>
+      <h2>Last 3 Games</h2>
+      <ul id="gameScoresList">
+        <!-- Game scores will appear here -->
+      </ul>
     </div>
 
     <main>
-        <section class="game-container">
-            <canvas id="pong" width="800" height="400"></canvas>
-            <div id="score" class="score-board">
-                <span id="playerScore">0</span> - <span id="computerScore">0</span>
-            </div>
-            <!-- Reset Game Button -->
-            <button id="resetGameButton">Reset Game</button>
-        </section>
+      <section class="game-container">
+        <canvas id="pong" width="800" height="400"></canvas>
+        <div id="score" class="score-board">
+          <span id="playerScore">0</span> - <span id="computerScore">0</span>
+        </div>
+        <!-- Reset Game Button -->
+        <button id="resetGameButton">Reset Game</button>
+      </section>
     </main>
 
     <footer id="footer">
-        <p>&copy; 2025 Christina Phan</p>
+      <p>&copy; 2025 Christina Phan</p>
     </footer>
 
-    <script src="js/scripts.js"></script>
-</body>
+    <script src="assets/js/scripts.js"></script>
+  </body>
 </html>
