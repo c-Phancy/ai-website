@@ -1,0 +1,232 @@
+/* General reset and layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    background-color: #FFB6C1;  /* Pastel pink */
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #222;
+    padding: 20px;
+    transition: right 0.3s ease;
+    box-shadow: -3px 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* Makes the sidebar scrollable if content overflows */
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar h2 {
+    color: #FFB6C1;
+    margin-bottom: 20px;
+}
+
+#gameScoresList {
+    list-style: none;
+    padding: 0;
+    color: #fff;
+    font-size: 1rem;
+}
+
+#gameScoresList li {
+    margin-bottom: 10px;
+    padding: 5px;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+.close-btn {
+    background-color: #FFB6C1;
+    color: #111;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.close-btn:hover {
+    background-color: #ff88a8;
+}
+
+/* Game Page Styles */
+.game-container {
+    text-align: center;
+    position: relative;
+}
+
+#pong {
+    background-color: #000;
+    margin-top: 20px;
+}
+
+.score-board {
+    font-size: 2rem;
+    color: #fff;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #FFB6C1;
+    color: #111;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ff88a8;
+}
+
+/* Contact Page Styles */
+.contact-container {
+    background-color: #222;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #FFB6C1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #333;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #FFB6C1;
+}
+
+button[type="submit"] {
+    background-color: #FFB6C1;
+    color: #111;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button[type="submit"]:hover {
+    background-color: #ff88a8;
+}
+
+.disclaimer {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #FFB6C1;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #FFB6C1;
+    text-align: center;
+}
+
+/* Make sure the page is responsive */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        right: 0;
+    }
+
+    .game-container {
+        width: 90%;
+    }
+
+    .contact-container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+    }
+}

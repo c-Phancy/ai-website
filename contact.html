@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Page - Get in touch with Christina Phan">
+    <meta name="keywords" content="contact, message, demo">
+    <meta name="author" content="Christina Phan">
+    <title>Contact</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Contact</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Play</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-container">
+            <h2>Contact Me</h2>
+            <form id="contactForm" action="javascript:void(0);" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+
+<div class="disclaimer">
+                <p><strong>Disclaimer:</strong> Please note that this is a demo website, and your email will not actually be sent. This form is for demonstration purposes only.</p>
+            </div>
+
+            <!-- Placeholder for the Thank You message -->
+            <p id="thankYouMessage" style="display: none; color: #90EE90; margin-top: 20px;">Thank you for the message! I will get back to you shortly!</p>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <p>&copy; 2025 Christina Phan</p>
+    </footer>
+
+    <script>
+        // JavaScript to display the Thank You message
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the form from actually submitting (demo purpose)
+
+            // Hide the form (optional)
+            document.getElementById('contactForm').style.display = 'none';
+
+            // Show the thank you message
+            document.getElementById('thankYouMessage').style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
