@@ -35,10 +35,10 @@ The purpose of the project is to recognize how AI can assist in modern developme
 
 ## Roadmap
 
-- [ ] Add game AI
+- [x] Add game AI
 - [ ] Add responsive design
 - [ ] Add other games
-- [ ] Fix game history tracking bug
+- [x] Fix game history tracking bug
 
 
 
