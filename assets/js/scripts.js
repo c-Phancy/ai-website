@@ -58,8 +58,12 @@ document.addEventListener("keyup", (event) => {
   }
 });
 
+let gameEnded = false; // Flag to check if the game has ended
+
 // Function to update the ball and paddles
 function update() {
+  if (gameEnded) return; // Skip further logic if the game has ended
+
   // Update player paddle position
   playerY += playerSpeed;
 
@@ -70,17 +74,16 @@ function update() {
     playerY = canvas.height - paddleHeight;
   }
 
-  // Update computer paddle position (AI with human-like randomness)
+  // Update computer paddle position (AI)
   let aiThreshold = 150; // The distance from the ball at which the AI will start moving
   let aiMove = 0;
 
-  // AI moves only when the ball is close enough
   if (Math.abs(ballX - (canvas.width - paddleWidth)) < aiThreshold) {
     aiMove = ballY - (computerY + paddleHeight / 2);
     if (aiMove > 0) {
-      computerY += computerSpeed; // Move down
+      computerY += computerSpeed;
     } else {
-      computerY -= computerSpeed; // Move up
+      computerY -= computerSpeed;
     }
   }
 
@@ -98,8 +101,8 @@ function update() {
   // Gradually increase the ball speed after each collision with top or bottom
   if (ballY <= 0 || ballY + ballSize >= canvas.height) {
     ballSpeedY = -ballSpeedY;
-    ballSpeedX *= 1.05; // Slight increase in horizontal speed
-    ballSpeedY *= 1.05; // Slight increase in vertical speed
+    ballSpeedX *= 1.02; // Slight increase in horizontal speed
+    ballSpeedY *= 1.02; // Slight increase in vertical speed
   }
 
   // Ball collision with left and right paddles
@@ -109,7 +112,7 @@ function update() {
     ballY <= playerY + paddleHeight
   ) {
     ballSpeedX = -ballSpeedX;
-    ballSpeedX *= 1.05; // Increase speed after hitting player paddle
+    ballSpeedX *= 1.02; // Increase speed after hitting player paddle
   }
 
   if (
@@ -118,69 +121,85 @@ function update() {
     ballY <= computerY + paddleHeight
   ) {
     ballSpeedX = -ballSpeedX;
-    ballSpeedX *= 1.05; // Increase speed after hitting computer paddle
+    ballSpeedX *= 1.02; // Increase speed after hitting computer paddle
   }
 
   // Scoring system
   if (ballX <= 0) {
     computerScore++;
-    saveGameResult("Computer");
-    resetBall();
+    resetBall(); // Reset the ball speed and position after every score
   }
 
   if (ballX + ballSize >= canvas.width) {
     playerScore++;
-    saveGameResult("Player");
-    resetBall();
+    resetBall(); // Reset the ball speed and position after every score
   }
 
   // Display the updated scores
   document.getElementById("playerScore").textContent = playerScore;
   document.getElementById("computerScore").textContent = computerScore;
 
-  // If someone wins, reset the game
+  // If someone wins (score 5), save the result and reset the game
   if (playerScore === 5 || computerScore === 5) {
-    setTimeout(() => {
-      saveGameResult(playerScore === 5 ? "Player" : "Computer");
-      playerScore = 0;
-      computerScore = 0;
-      resetBall();
-    }, 100);
+    if (!gameEnded) {
+      // Only run this block once if the game hasn't ended yet
+      gameEnded = true; // Set the flag to true, indicating the game has ended
+
+      setTimeout(() => {
+        // Save game result only once at the end of a round
+        saveGameResult(playerScore === 5 ? "Player" : "Computer");
+        playerScore = 0; // Reset the score after the round ends
+        computerScore = 0;
+        resetBall(); // Reset the ball speed and position when the game resets
+
+        // Reset the gameEnded flag so the game can start a new round
+        gameEnded = false;
+      }, 100); // Delay to ensure proper timing and avoid multiple updates
+    }
   }
 }
 
-// Function to save the game result to localStorage
+// Function to save the game result (rounds)
 function saveGameResult(winner) {
-  const gameResult = {
+  const roundResult = {
+    roundNumber: getRoundNumber(),
     playerScore,
     computerScore,
     winner,
   };
 
-  // Get stored game results from localStorage
+  // Get stored game results (rounds) from localStorage
   let gameResults = JSON.parse(localStorage.getItem("gameResults")) || [];
 
-  // Add new game result to the array
-  gameResults.unshift(gameResult);
+  // Add new round result to the array
+  gameResults.unshift(roundResult);
 
-  // Keep only the last 3 games
+  // Keep only the last 3 rounds
   if (gameResults.length > 3) {
     gameResults.pop();
   }
 
-  // Save back to localStorage
+  console.log(gameResults);
+
+  // Save the round results back to localStorage
   localStorage.setItem("gameResults", JSON.stringify(gameResults));
 
   // Update the scores display in the hamburger menu
   updateGameScores();
 }
 
+// Helper function to get the next round number
+function getRoundNumber() {
+  let gameResults = JSON.parse(localStorage.getItem("gameResults")) || [];
+  return gameResults.length + 1; // Next round number based on current stored rounds
+}
+
 // Function to reset the ball to the center
 function resetBall() {
   ballX = canvas.width / 2 - ballSize / 2;
   ballY = canvas.height / 2 - ballSize / 2;
-  ballSpeedX = -initialBallSpeedX; // Reset to initial speed and change direction
-  ballSpeedY = initialBallSpeedY; // Reset to initial speed
+  ballSpeedX = Math.random() > 0.5 ? 3 : -3; // Randomize direction after reset
+  ballSpeedY = (Math.random() > 0.5 ? 1 : -1) * 3; // Random vertical speed after reset
 }
 
 // Function to draw everything on the canvas
@@ -240,15 +259,13 @@ function updateGameScores() {
   const gameScoresList = document.getElementById("gameScoresList");
   gameScoresList.innerHTML = "";
 
-  // Get stored game results
+  // Get stored game results (rounds) from localStorage
   const gameResults = JSON.parse(localStorage.getItem("gameResults")) || [];
 
-  // Display the last 3 game results
-  gameResults.forEach((game, index) => {
+  // Display the last 3 round results
+  gameResults.forEach((game, _) => {
     const li = document.createElement("li");
-    li.textContent = `Game ${index + 1}: Player ${
-      game.playerScore
-    } - Computer ${game.computerScore} | Winner: ${game.winner}`;
+    li.textContent = `Round ${game.roundNumber}: Player ${game.playerScore} - Computer ${game.computerScore} | Winner: ${game.winner}`;
     gameScoresList.appendChild(li);
   });
 }
