@@ -59,3 +59,15 @@ This project was published to this GitHub repository using Git in the following 
 * Brainstorming page ideas
 * Responsive design
 * Game history logic
+
+
+
+## GitHub Actions
+
+This project is deployed using GitHub Actions by changing the source of deployment from direct from branch. There is a workflow added that triggers redeployment after two ways:
+1. Pushing to the main branch
+2. Manually triggering in the Actions tab -> Deploy static content to Pages -> Run workflow
+
+### Challenges
+
+As this was a pre-configured workflow file, there were no particular challenges - as there were no changes aside from changing the default branch name. As the project expands, please adjust the configurations (such as excluded files) accordingly.
